@@ -11,6 +11,10 @@ type GridPos = tuple[int, int]
 
 class Grid[T: str | int]:
 
+    CARDINALS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+    DIAGONALS = [(-1, -1), (1, -1), (1, 1), (-1, 1)]
+    ADJACENTS = CARDINALS + DIAGONALS
+
     def __init__(
         self, rows: list[str],
         *, transformer: Callable[[str], T] | None = None,
