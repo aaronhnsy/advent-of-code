@@ -9,7 +9,7 @@ class Day1(Day[list[tuple[str, int]]]):
     def part_one(self) -> int:
         position = 50
         count = 0
-        for direction, distance in self.INPUT:
+        for direction, distance in self.input:
             if direction == "L":
                 for _ in range(distance):
                     position += 1
@@ -27,7 +27,7 @@ class Day1(Day[list[tuple[str, int]]]):
     def part_two(self) -> int:
         position = 50
         count = 0
-        for direction, distance in self.INPUT:
+        for direction, distance in self.input:
             if direction == "L":
                 for _ in range(distance):
                     position += 1
@@ -46,4 +46,4 @@ class Day1(Day[list[tuple[str, int]]]):
 
 
 day = Day1()
-day.time(day.part_one, day.part_two)
+day.run(day.part_one, day.part_two)

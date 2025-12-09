@@ -12,9 +12,11 @@ type Part = Callable[[], PartReturn]
 class Day[T]:
 
     def __init__(self) -> None:
-        self.FILE: str = f"../inputs/{self.__class__.__name__.lower()}.txt"
-        self.LINES: list[str] = pathlib.Path(self.FILE).read_text().splitlines()
-        self.INPUT: T = self.parse()
+        self.FILENAME: str = f"../inputs/{self.__class__.__name__.lower()}.txt"
+        self.FILE: pathlib.Path = pathlib.Path(self.FILENAME)
+        self.TEXT: str = self.FILE.read_text()
+        self.LINES: list[str] = self.TEXT.splitlines()
+        self.input: T = self.parse()
 
     def parse(self) -> T:
         raise NotImplementedError

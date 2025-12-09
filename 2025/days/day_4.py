@@ -1,37 +1,37 @@
 from aoc import Day
-from aoc.grid import Grid
+from aoc.grid import Grid, ADJACENTS
 
 
 class Day4(Day[Grid[str]]):
 
-    def parse(self):
+    def parse(self) -> Grid[str]:
         return Grid[str](self.LINES)
 
-    def part_one(self):
-        found = set[tuple[int, int]]()
-        for (x, y), cell in self.INPUT.enumerate():
-            if cell == "@" and sum(
-                1 for (x_offset, y_offset) in self.INPUT.ADJACENTS
-                if self.INPUT.is_pos_valid(pos := (x + x_offset, y + y_offset)) and self.INPUT[pos] == "@"
+    def part_one(self) -> int:
+        count = 0
+        for position, value in self.input.enumerate():
+            if value == "@" and sum(
+                1 for offset in ADJACENTS
+                if (pos := position + offset).is_valid(self.input) and self.input[pos] == "@"
             ) < 4:
-                found.add((x, y))
-        return len(found)
+                count += 1
+        return count
 
-    def part_two(self):
-        removed = set[tuple[int, int]]()
+    def part_two(self) -> int:
+        count = 0
         while True:
-            done = False
-            for (x, y), cell in self.INPUT.enumerate():
-                if cell == "@" and sum(
-                    1 for (x_offset, y_offset) in self.INPUT.ADJACENTS
-                    if self.INPUT.is_pos_valid(pos := (x + x_offset, y + y_offset)) and self.INPUT[pos] == "@"
+            removed = False
+            for position, value in self.input.enumerate():
+                if value == "@" and sum(
+                    1 for offset in ADJACENTS
+                    if (pos := position + offset).is_valid(self.input) and self.input[pos] == "@"
                 ) < 4:
-                    removed.add((x, y))
-                    self.INPUT[(x, y)] = "x"
-                    done = True
-            if not done:
+                    count += 1
+                    self.input[position] = "x"
+                    removed = True
+            if not removed:
                 break
-        return len(removed)
+        return count
 
 
 day = Day4()
