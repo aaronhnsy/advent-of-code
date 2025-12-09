@@ -87,8 +87,8 @@ class Grid[T: str | int = str]:
         string = f"    {' '.join(map(str, range(len(self.internal[0]))))}\n"
         for r_index, row in enumerate(self.internal):
             string += f"{r_index:3d} "
-            for _, value in enumerate(row):
-                string += f"{value} "
+            for index, value in enumerate(row):
+                string += f"{value}{' ' * len(str(index))}"
             string += "\n"
         return string
 

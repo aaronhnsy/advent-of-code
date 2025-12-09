@@ -8,6 +8,7 @@ dependencies    = [
     "scipy~=1.16.0",
     "sympy~=1.14.0",
     "basedpyright~=1.35.0",
+    "shapely~=2.1.0",
 ]
 
 [tool.basedpyright]
