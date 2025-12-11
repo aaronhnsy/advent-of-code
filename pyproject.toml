@@ -9,6 +9,7 @@ dependencies    = [
     "sympy~=1.14.0",
     "basedpyright~=1.35.0",
     "shapely~=2.1.0",
+    "z3-solver>=4.15.4.0",
 ]
 
 [tool.basedpyright]
